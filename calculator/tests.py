@@ -20,4 +20,8 @@ class CalculatorTest(TestCase):
         self.assertEqual(response.context['area'], '12.0')
         self.assertEqual(response.context['nominal_power'], '183735.0')
 
+    def test_calculator_validation(self):
+        response = self.client.post('/calculator/', {'area': 'abc'})
+        self.assertEqual(response.context['error_message'], 'Enter a floating-point number')
+
 
