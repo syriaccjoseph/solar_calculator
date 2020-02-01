@@ -1,9 +1,10 @@
 # solar_calculator
 solar calculator
 
-## pip install
+## install django and dependencies
 
 pip install Django==1.11.23
+npm install
 
 ## run server
 
