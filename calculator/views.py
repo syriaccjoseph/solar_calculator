@@ -9,6 +9,7 @@ from .forms import AreaForm
 def calculator(request):
     area = ''
     energy = ''
+    template = loader.get_template('calculator/calculator.html')
     if request.method == 'POST':
         form = AreaForm(request.POST)
         if form.is_valid():
@@ -26,7 +27,12 @@ def calculator(request):
             e = a * r * h * pr
             area = str(a)
             energy = str(e)
-    template = loader.get_template('calculator/calculator.html')
+        else:
+            context = {
+                'error_message' : 'Enter a floating-point number'
+            }
+            return HttpResponse(template.render(context, request))
+
     context = {
         'area': area,
         'nominal_power': energy,
